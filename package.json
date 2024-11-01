@@ -1,0 +1,10 @@
+{
+  "name": "@fabianmichael/kirby-themes",
+  "version": "1.0.0",
+  "author": "Fabian Michael",
+  "license": "MIT",
+  "scripts": {
+    "php:check": "./vendor/bin/phpcs --standard=.phpcs.xml",
+    "php:fix": "./vendor/bin/phpcbf --standard=.phpcs.xml"
+  }
+}

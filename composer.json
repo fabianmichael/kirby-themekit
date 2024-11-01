@@ -1,0 +1,39 @@
+{
+    "name": "fabianmichael/kirby-themes",
+    "description": "Tools for color themes",
+    "type": "kirby-plugin",
+    "version": "0.0.1",
+    "homepage": "https://github.com/fabianmichael/kirby-themes",
+    "autoload": {
+        "psr-4": {
+            "FabianMichael\\Themes\\": "src/"
+        },
+        "files": [
+          "./helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Fabian Michael",
+            "email": "hallo@fabianmichael.de"
+        }
+    ],
+    "require": {
+        "getkirby/cms": "^4.4"
+    },
+    "config": {
+        "platform": {
+          "php": "8.2"
+        },
+        "allow-plugins": {
+            "getkirby/composer-installer": true
+        }
+    },
+    "extra": {
+      "kirby-cms-path": false,
+      "installer-name": "themes"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.10"
+    }
+}
