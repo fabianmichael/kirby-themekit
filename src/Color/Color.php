@@ -1,8 +1,8 @@
 <?php
 
-namespace FabianMichael\Themes\Color;
+namespace FabianMichael\ThemeKit\Color;
 
-use FabianMichael\Themes\Color\Readability;
+use FabianMichael\ThemeKit\Color\Readability;
 use Stringable;
 
 // based on: https://github.com/hananils/kirby-colors/tree/main

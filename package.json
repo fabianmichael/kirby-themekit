@@ -1,10 +1,15 @@
 {
-  "name": "@fabianmichael/kirby-themes",
+  "name": "@fabianmichael/kirby-themekit",
   "version": "1.0.0",
   "author": "Fabian Michael",
   "license": "MIT",
   "scripts": {
     "php:check": "./vendor/bin/phpcs --standard=.phpcs.xml",
-    "php:fix": "./vendor/bin/phpcbf --standard=.phpcs.xml"
+    "php:fix": "./vendor/bin/phpcbf --standard=.phpcs.xml",
+    "dev": "kirbyup panel/index.js --watch",
+    "build": "kirbyup panel/index.js"
+  },
+  "devDependencies": {
+    "kirbyup": "^2.1.3"
   }
 }

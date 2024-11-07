@@ -1,6 +1,6 @@
 <?php
 
-namespace FabianMichael\Themes\Color;
+namespace FabianMichael\ThemeKit\Color;
 
 // based on: https://github.com/hananils/kirby-colors/tree/main
 /**

@@ -1,12 +1,12 @@
 {
-    "name": "fabianmichael/kirby-themes",
+    "name": "fabianmichael/kirby-themekit",
     "description": "Tools for color themes",
     "type": "kirby-plugin",
     "version": "0.0.1",
-    "homepage": "https://github.com/fabianmichael/kirby-themes",
+    "homepage": "https://github.com/fabianmichael/kirby-themekit",
     "autoload": {
         "psr-4": {
-            "FabianMichael\\Themes\\": "src/"
+            "FabianMichael\\ThemeKit\\": "src/"
         },
         "files": [
           "./helpers.php"
@@ -31,7 +31,7 @@
     },
     "extra": {
       "kirby-cms-path": false,
-      "installer-name": "themes"
+      "installer-name": "themekit"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.10"

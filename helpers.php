@@ -1,6 +1,8 @@
 <?php
 
-function themes(bool $return = true): ?string
+use FabianMichael\ThemeKit\Themes;
+
+function themes(): Themes
 {
-	return snippet('themes', return: $return);
+	return Themes::instance();
 }

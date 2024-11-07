@@ -1,11 +1,27 @@
 <?php
 
-use FabianMichael\Themes\Styles;
+use FabianMichael\ThemeKit\Styles;
+
+$rules = [];
+
+foreach (themes() as $theme) {
+    Styles::push($theme);
+}
 
 Styles::push($page->theme());
 
-$styles = Styles::render();
-
-if (!empty($styles)) {
-    echo '<style>' . PHP_EOL . $styles . PHP_EOL . '</style>';
+foreach (Styles::stack() as $theme) {
+    $rules[] = snippet('themes/css-rule', [
+        'theme' => $theme,
+    ], return: true);
 }
+
+if (count($rules) === 0) {
+    return;
+}
+
+?>
+
+<style>
+<?= implode(PHP_EOL, $rules) ?>
+</style>

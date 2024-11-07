@@ -1,8 +1,8 @@
 <?php
 
-namespace FabianMichael\Themes\Color;
+namespace FabianMichael\ThemeKit\Color;
 
-use FabianMichael\Themes\Color\Color;
+use FabianMichael\ThemeKit\Color\Color;
 
 // based on: https://github.com/hananils/kirby-colors/tree/main
 /**
@@ -20,8 +20,8 @@ class Readability
 	private $highest = 0;
 
 	public function __construct(
-		$color = '#fff',
-		$combinations = ['#fff', '#000']
+		string $color = '#fff',
+		?array $combinations = ['#fff', '#000']
 	) {
 		$this->color = new Color($color);
 
@@ -58,16 +58,16 @@ class Readability
 		$ratings = [];
 
 		if ($ratio >= 3) {
-			$ratings[] = 'aaLarge';
+			$ratings[] = 'AA (large)';
 		}
 
 		if ($ratio >= 4.5) {
-			$ratings[] = 'aaaLarge';
-			$ratings[] = 'aa';
+			$ratings[] = 'AAA (large)';
+			$ratings[] = 'AA';
 		}
 
 		if ($ratio >= 7) {
-			$ratings[] = 'aaa';
+			$ratings[] = 'AAA';
 		}
 
 		if (count($ratings) > $this->highest) {

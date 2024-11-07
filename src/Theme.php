@@ -1,8 +1,10 @@
 <?php
 
-namespace FabianMichael\Themes;
+// phpcs:disable PSR1.Methods.CamelCapsMethodName
 
-use FabianMichael\Themes\Color\Color;
+namespace FabianMichael\ThemeKit;
+
+use FabianMichael\ThemeKit\Color\Color;
 use Kirby\Cms\Block;
 use Kirby\Cms\Layout;
 use Kirby\Cms\Page;
@@ -12,23 +14,40 @@ use Kirby\Toolkit\Str;
 
 class Theme extends Obj
 {
-	protected const CONTRAST_COLORS = [
-		'#fff',
-		'#000',
-	];
-
 	protected const CUSTOM_THEME_PREFIX = 'theme_';
-
-	protected const COLORS_EXPORT = [
-		'background',
-		'backgroundContrast',
-		'foreground',
-		'foregroundContrast',
-	];
 
 	public function __construct(array $data)
 	{
+		$data = array_merge([
+			'source' => 'config',
+		], $data);
+
 		parent::__construct($data);
+	}
+
+	public function colorsExport(): array
+	{
+		return [
+			...array_keys(static::fields()),
+			'background_contrast',
+			'foreground_contrast',
+		];
+	}
+
+	protected static function constrastColors(): array
+	{
+		return [
+			option('fabianmichael.themekit.contrastLight'),
+			option('fabianmichael.themekit.contrastDark'),
+		];
+	}
+
+	public function readability(): array
+	{
+		$report = $this->foreground()
+			->toReadabilityReport([$this->background()->toString('hex')]);
+
+		return A::get($report, 'combinations.0.accessibility');
 	}
 
 	public function foreground(): Color
@@ -37,7 +56,7 @@ class Theme extends Obj
 			return new Color($this->foreground);
 		}
 
-		$color = $this->background()->toMostReadable(static::CONTRAST_COLORS);
+		$color = $this->background()->toMostReadable(static::constrastColors());
 		$color = A::first($color);
 		$foreground = A::get($color, 'color');
 
@@ -49,20 +68,18 @@ class Theme extends Obj
 		return new Color($this->background);
 	}
 
-	public function backgroundContrast(): Color
+	public function background_contrast(): Color
 	{
-		$color = $this->background()->toMostReadable(static::CONTRAST_COLORS);
+		$color = $this->background()->toMostReadable(static::constrastColors());
 		$color = A::first($color);
-		$color = A::get($color, 'color');
-		return $color;
+		return A::get($color, 'color');
 	}
 
-	public function foregroundContrast(): Color
+	public function foreground_contrast(): Color
 	{
-		$color = $this->foreground()->toMostReadable(static::CONTRAST_COLORS);
+		$color = $this->foreground()->toMostReadable(static::constrastColors());
 		$color = A::first($color);
-		$color = A::get($color, 'color');
-		return $color;
+		return A::get($color, 'color');
 	}
 
 	public function isDefault(): bool
@@ -72,21 +89,26 @@ class Theme extends Obj
 
 	public function isCustom(): bool
 	{
-		return (bool) $this->custom();
+		return (bool) $this->custom;
 	}
 
 	public function isDark(): bool
 	{
-		$color = $this->background()->toMostReadable(static::CONTRAST_COLORS);
+		$color = $this->background()->toMostReadable(static::constrastColors());
 		$color = A::first($color);
 		$color = A::get($color, 'color');
 
-		return $color->toString('hex') === '#ffffff';
+		return $color->toString('hex') === (new Color(option('fabianmichael.themekit.contrastLight')))->toString('hex');
 	}
 
 	public function isLight(): bool
 	{
 		return !$this->isDark();
+	}
+
+	public function scheme(): string
+	{
+		return r($this->isLight(), 'light', 'dark');
 	}
 
 	public function toArray(): array
@@ -96,30 +118,55 @@ class Theme extends Obj
 			'title' => $this->title(),
 			'dark' => $this->isDark(),
 			'default' => $this->isDefault(),
+			'editable' => $this->isEditable(),
+			'source' => $this->source(),
+			'readability' => $this->readability(),
 		];
 
-		foreach (static::COLORS_EXPORT as $color) {
-			$kebap = Str::kebab($color);
-			$data[$kebap] = $this->$color()->toString('hex');
+		foreach (array_keys(static::fields()) as $field) {
+			$data[$field] = $this->get($field);
 		}
 
 		return $data;
 	}
 
-	public function toCSSRule()
+	public function __call(string $property, array $arguments)
 	{
-		$css = ["[data-theme=\"{$this->slug()}\"]", '{'];
-		if (option('debug') && $this->isDefault()) {
-			$css[] = '/* default theme */';
-		}
-		foreach (static::COLORS_EXPORT as $color) {
-			$kebab = Str::kebab($color);
-			extract($this->$color()->toHSL());
-			$css[] = "--theme--{$kebab}: {$h} {$s}% {$l}%;";
-		}
-		$css[] = '}';
+		$field = A::get(static::fields(), $property);
 
-		return implode(' ', $css);
+		if ($field && A::get($field, 'type') === 'color') {
+			if (!empty($this->$property)) {
+				return new Color($this->$property);
+			}
+
+			if ($fallback = A::get($field, 'fallback')) {
+				if (is_callable($fallback)) {
+					return $fallback($this);
+				} elseif (is_string($fallback)) {
+					return $this->$fallback();
+				}
+			}
+
+			return null;
+		}
+
+		return parent::__call($property, $arguments);
+	}
+
+	public function toData(): array
+	{
+		$data = $this->toArray();
+
+		foreach ($this->colorsExport() as $color) {
+			$data[$color] = $this->$color()?->toString('hex');
+		}
+
+		return $data;
+	}
+
+	public function isEditable(): bool
+	{
+		return $this->source() === 'site';
 	}
 
 	public function __toString(): string
@@ -171,20 +218,35 @@ class Theme extends Obj
 
 		return $themes->default();
 	}
+
 	public static function fields(?string $prefix = null): array
 	{
-		return [
+		$fields = [
 			"{$prefix}background" => [
 				'type' => 'color',
 				'label' => 'Background color',
 				'required' => true,
 				'translate' => false,
+				'width' => '1/2',
 			],
 			"{$prefix}foreground" => [
 				'type' => 'color',
 				'label' => 'Foreground color',
 				'translate' => false,
+				'width' => '1/2',
 			],
 		];
+
+		foreach (option('fabianmichael.themekit.fields') as $name => $field) {
+			$fields["{$prefix}{$name}"] = $field;
+		}
+
+		return $fields;
+	}
+
+	public function push(): static
+	{
+		Styles::push($this);
+		return $this;
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Kirby\Cms\App;
-use FabianMichael\Themes\Theme;
+use FabianMichael\ThemeKit\Theme;
 
 return function (App $kirby): array|false
 {

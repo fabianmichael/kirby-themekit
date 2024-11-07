@@ -1,8 +1,8 @@
 <?php
 
 use Kirby\Cms\App;
-use FabianMichael\Themes\Theme;
-use FabianMichael\Themes\Themes;
+use FabianMichael\ThemeKit\Theme;
+use FabianMichael\ThemeKit\Themes;
 
 return function (App $kirby): array {
 	$themes = Themes::instance();
@@ -26,14 +26,14 @@ return function (App $kirby): array {
 	}
 
 	$themesField = [
-		'type' => 'select',
+		'type' => 'theme-selector',
 		'label' => 'Farbschema',
 		'default' => $themes->default()->slug(),
 		'options' => $options,
 		'translate' => false,
 	];
 
-	if (option('fabianmichael.themes.custom') === true) {
+	if (option('fabianmichael.themekit.customThemes') === true) {
 		return [
 			'type' => 'group',
 			'fields' => [

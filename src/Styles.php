@@ -1,18 +1,18 @@
 <?php
 
-namespace FabianMichael\Themes;
+namespace FabianMichael\ThemeKit;
 
 class Styles
 {
-	protected static array $content = [];
+	protected static array $stack = [];
 
 	public static function push(Theme $theme): void
 	{
-		static::$content[$theme->slug()] = $theme;
+		static::$stack[$theme->slug()] = $theme;
 	}
 
-	public static function render(): string
+	public static function stack(): array
 	{
-		return implode(PHP_EOL, array_map(fn($theme) => $theme->toCSSRule(), static::$content));
+		return static::$stack;
 	}
 }
