@@ -19,7 +19,8 @@
         }
     ],
     "require": {
-        "getkirby/cms": "^4.4"
+        "getkirby/cms": "^4.4",
+        "getkirby/composer-installer": "^1.2"
     },
     "config": {
         "platform": {
