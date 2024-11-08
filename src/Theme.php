@@ -191,7 +191,7 @@ class Theme extends Obj
 			}
 
 			if ($item instanceof Page) {
-				$slug = 'page-' . Str::slug($item->uuid()->toString());
+				$slug = Str::slug($item->uuid()->toString());
 			} elseif ($item instanceof Layout) {
 				$slug = 'layout-' . Str::slug(explode('-', $item->id())[0]);
 			} else {
