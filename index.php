@@ -50,7 +50,6 @@ App::plugin('fabianmichael/themekit', [
 
 	'blueprints' => [
 		'fields/theme-group' => require __DIR__ . '/blueprints/fields/theme-group.php',
-		'tabs/themes/site' => require __DIR__ . '/blueprints/tabs/themes/site.php',
 	],
 
 	'fields' => require __DIR__ . '/config/fields.php',
