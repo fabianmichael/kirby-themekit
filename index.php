@@ -74,7 +74,10 @@ App::plugin('fabianmichael/themekit', [
 
 	'snippets' => [
 		'themes' => __DIR__ . '/snippets/themes.php',
+		'themekit/themes' => __DIR__ . '/snippets/themes.php',
 		'themes/css-rule' => __DIR__ . '/snippets/themes/css-rule.php',
+		'themekit/themes/css-rule' => __DIR__ . '/snippets/themes/css-rule.php',
 		'themes/css-properties' => __DIR__ . '/snippets/themes/css-properties.php',
+		'themekit/themes/css-properties' => __DIR__ . '/snippets/themes/css-properties.php',
 	],
 ]);
