@@ -63,7 +63,7 @@ App::plugin('fabianmichael/themekit', [
 
 	'pageMethods' => [
 		'theme' => function () {
-			return Theme::from($this);
+			return Theme::from($this) ?? themes()->default();
 		},
 	],
 
