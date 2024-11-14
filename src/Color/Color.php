@@ -25,15 +25,15 @@ class Color implements Stringable
 		if (is_a($color, static::class)) {
 			$values = $color->toValues();
 			$this->setValues($values);
-		} elseif ($this->isHex($color)) {
+		} elseif (static::isHex($color)) {
 			$this->original = $color;
 			$this->space = 'hex';
 			$this->parseHex($color);
-		} elseif ($this->isRgb($color)) {
+		} elseif (static::isRgb($color)) {
 			$this->original = $color;
 			$this->space = 'rgb';
 			$this->parseRgb($color);
-		} elseif ($this->isHsl($color)) {
+		} elseif (static::isHsl($color)) {
 			$this->original = $color;
 			$this->space = 'hsl';
 			$this->parseHsl($color);
@@ -46,17 +46,17 @@ class Color implements Stringable
 	 * Checks
 	 */
 
-	public function isHex(string $color): bool
+	public static function isHex(?string $color = null): bool
 	{
 		return !empty($color) && strpos($color, '#') === 0;
 	}
 
-	public function isRgb(string $color): bool
+	public static function isRgb(?string $color = null): bool
 	{
 		return !empty($color) && strpos($color, 'rgb') === 0;
 	}
 
-	public function isHsl(string $color): bool
+	public static function isHsl(?string $color = null): bool
 	{
 		return !empty($color) && strpos($color, 'hsl') === 0;
 	}
@@ -121,7 +121,7 @@ class Color implements Stringable
 		]);
 	}
 
-	public function setValues(array $values): void
+	public function setValues(array $values): static
 	{
 		$this->original = $values['original'];
 		$this->space = $values['space'];
@@ -132,57 +132,65 @@ class Color implements Stringable
 		$this->s = $values['s'];
 		$this->l = $values['l'];
 		$this->a = $values['a'];
+		return $this;
 	}
 
 	/* Set by value */
 
-	public function setSpace(string $format): void
+	public function setSpace(string $format): static
 	{
 		$this->space = $format;
+		return $this;
 	}
 
-	public function setRed($value)
+	public function setRed($value): static
 	{
 		$this->r = $this->convertValueToDecimal($value);
+		return $this;
 	}
 
-	public function setGreen($value)
+	public function setGreen($value): static
 	{
 		$this->g = $this->convertValueToDecimal($value);
+		return $this;
 	}
 
-	public function setBlue($value)
+	public function setBlue($value): static
 	{
 		$this->b = $this->convertValueToDecimal($value);
+		return $this;
 	}
 
-	public function setHue($value)
+	public function setHue($value): static
 	{
 		$this->h = $this->convertValueToDecimal($value);
+		return $this;
 	}
 
-	public function setSaturation($value)
+	public function setSaturation($value): static
 	{
 		$this->s = $this->convertValueToDecimal($value);
+		return $this;
 	}
 
-	public function setLightness($value)
+	public function setLightness($value): static
 	{
 		$this->l = $this->convertValueToDecimal($value);
+		return $this;
 	}
 
-	public function setAlpha($value)
+	public function setAlpha($value): static
 	{
 		$this->a = $this->convertValueToDecimal($value);
+		return $this;
 	}
 
 	/* Set by space */
 
-	public function setHex($values)
+	public function setHex($values): static
 	{
 		if (!$values) {
-			$this->setDefault();
-			return;
+			return $this->setDefault();
 		}
 
 		$this->setRed(hexdec($values[0]));
@@ -194,13 +202,13 @@ class Color implements Stringable
 		}
 
 		$this->convertRgbToHsl();
+		return $this;
 	}
 
-	public function setRgb($values)
+	public function setRgb($values): static
 	{
 		if (!$values) {
-			$this->setDefault();
-			return;
+			return $this->setDefault();
 		}
 
 		$this->setRed($values[0]);
@@ -212,13 +220,13 @@ class Color implements Stringable
 		}
 
 		$this->convertRgbToHsl();
+		return $this;
 	}
 
-	public function setHsl($values)
+	public function setHsl($values): static
 	{
 		if (!$values) {
-			$this->setDefault();
-			return;
+			return $this->setDefault();
 		}
 
 		$this->setHue($values[0]);
@@ -230,6 +238,7 @@ class Color implements Stringable
 		}
 
 		$this->convertHslToRgb();
+		return $this;
 	}
 
 	/**

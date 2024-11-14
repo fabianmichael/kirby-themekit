@@ -4,11 +4,7 @@ use FabianMichael\ThemeKit\Styles;
 
 $rules = [];
 
-foreach (themes() as $theme) {
-    Styles::push($theme);
-}
-
-Styles::push($page->theme());
+$page->theme()->use();
 
 foreach (Styles::stack() as $theme) {
     $rules[] = snippet('themes/css-rule', [

@@ -28,7 +28,7 @@ return function (App $kirby): array {
 	$themesField = [
 		'type' => 'theme-selector',
 		'label' => 'Farbschema',
-		'default' => $themes->default()->slug(),
+		'default' => $themes->default()?->slug(),
 		'options' => $options,
 		'translate' => false,
 	];

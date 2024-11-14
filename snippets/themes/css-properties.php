@@ -16,7 +16,10 @@ foreach ($theme->colorsExport() as $name) {
         'name' => str_replace('_', '-', $name),
     ]);
     echo ': ';
-    echo Str::template($colorValue, $color->toValues());
+    echo Str::template($colorValue, [
+        ...($v = $color->toValues()),
+        '/alpha' => r($v['a'] < 100, ' / ' . $v['a'], ''),
+    ]);
     echo ';';
     echo PHP_EOL;
 }

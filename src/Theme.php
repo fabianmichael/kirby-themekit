@@ -191,7 +191,7 @@ class Theme extends Obj
 			}
 
 			if ($item instanceof Page) {
-				$slug = Str::slug($item->uuid()->toString());
+				$slug = 'page-' . substr($item->uuid()->id(), 0, 6);
 			} elseif ($item instanceof Layout) {
 				$slug = 'layout-' . Str::slug(explode('-', $item->id())[0]);
 			} else {
@@ -216,7 +216,7 @@ class Theme extends Obj
 			}
 		}
 
-		return $themes->default();
+		return null;
 	}
 
 	public static function fields(?string $prefix = null): array
@@ -244,7 +244,7 @@ class Theme extends Obj
 		return $fields;
 	}
 
-	public function push(): static
+	public function use(): static
 	{
 		Styles::push($this);
 		return $this;

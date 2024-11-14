@@ -15,7 +15,7 @@ App::plugin('fabianmichael/themekit', [
 		'css' => [
 			'selector' => '[data-theme="{slug}"]',
 			'propertyName' => '--theme--{name}',
-			'colorValue' => '{h} {s} {l}%',
+			'colorValue' => 'hsl({h} {s} {l}%{/alpha})',
 		],
 		'previewColors' => function (): array {
 			$previews = [];
@@ -50,6 +50,7 @@ App::plugin('fabianmichael/themekit', [
 
 	'blueprints' => [
 		'fields/theme-group' => require __DIR__ . '/blueprints/fields/theme-group.php',
+		'themekit/fields/theme-group' => require __DIR__ . '/blueprints/fields/theme-group.php',
 	],
 
 	'fields' => require __DIR__ . '/config/fields.php',
