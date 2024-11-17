@@ -12,7 +12,7 @@ foreach ($theme->colorsExport() as $name) {
         continue;
     }
 
-    echo '  ' . Str::template($propertyName, [
+    echo '    ' . Str::template($propertyName, [
         'name' => str_replace('_', '-', $name),
     ]);
     echo ': ';
@@ -24,6 +24,6 @@ foreach ($theme->colorsExport() as $name) {
     echo PHP_EOL;
 }
 
-echo '  ' . Str::template($propertyName, [
+echo '    ' . Str::template($propertyName, [
     'name' => 'color-scheme',
 ]) . ': ' . $theme->scheme() . ';' .PHP_EOL;

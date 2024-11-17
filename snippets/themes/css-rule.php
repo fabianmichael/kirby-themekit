@@ -4,7 +4,7 @@ use Kirby\Toolkit\Str;
 
 /** @var \FabianMichael\ThemeKit\Theme $theme */
 
-echo Str::template(
+echo '  ' . Str::template(
     $kirby->option('fabianmichael.themekit.css.selector'),
     ['slug' => $theme->slug()]
 );
@@ -15,5 +15,5 @@ snippet('themes/css-properties', [
     'theme' => $theme,
 ]);
 
-echo '}';
+echo '  }';
 echo PHP_EOL;

@@ -18,6 +18,6 @@ if (count($rules) === 0) {
 
 ?>
 
-<style>
+  <style>
 <?= implode(PHP_EOL, $rules) ?>
-</style>
+  </style>
