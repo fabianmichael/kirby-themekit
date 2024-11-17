@@ -1,23 +1,12 @@
 <?php
 
-use Kirby\Cms\App;
 use FabianMichael\ThemeKit\Theme;
 use FabianMichael\ThemeKit\Themes;
 
-return function (App $kirby): array {
+return function (): array {
 	$themes = Themes::instance();
-	// $options = array_reduce(
-	// 	$themes->toArray(),
-	// 	function ($carry, $theme) {
-	// 		$carry[] = [
-	// 			'value' => $theme['slug'],
-	// 			'text' => $theme['title'],
-	// 		];
-	// 		return $carry;
-	// 	},
-	// 	[]
-	// );
 	$options = [];
+
 	foreach ($themes as $theme) {
 		$options[] = [
 			'value' => $theme->slug(),
