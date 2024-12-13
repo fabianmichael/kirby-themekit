@@ -16,7 +16,7 @@ return function (): array {
 
 	$themesField = [
 		'type' => 'theme-selector',
-		'label' => 'Farbschema',
+		'label' => 'Color theme',
 		'default' => $themes->default()?->slug(),
 		'options' => $options,
 		'translate' => false,
@@ -28,7 +28,7 @@ return function (): array {
 			'fields' => [
 				'theme_custom' => [
 					'type' => 'toggle',
-					'label' => 'Eigenes Farbschema',
+					'label' => 'Custom theme',
 					'translate' => false,
 				],
 				'theme' => array_merge(
