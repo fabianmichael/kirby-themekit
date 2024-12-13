@@ -53,42 +53,6 @@
           </span>
         </label>
       </li>
-      <li
-        v-if="custom"
-        class="theme-selector-input__option"
-      >
-        <input
-          :id="id + '-custom'"
-          value="custom"
-          :name="id"
-          :checked="value === 'custom'"
-          type="radio"
-          @change="onInput('custom')"
-        />
-        <label :for="id + '-custom'">
-          <span class="theme-selector-input__preview">
-            <svg xmlns="http://www.w3.org/2000/svg" width="540" height="540" viewBox="0 0 540 540">
-              <path d="M511.5 205.3a239 239 0 0 1 0 129.4l-24.2 14.6L270 270l220.2-77.9z" fill="#fefe33"/>
-              <path d="M334.7 28.5c44.4 12 79.5 32.2 112 64.7l.7 24.9L270 270l43-229.5z" fill="#fb9902"/>
-              <path d="M446.8 93.2a238.9 238.9 0 0 1 64.7 112.1L270 270z" fill="#fabc02"/>
-              <path d="M93.2 93.2a238.9 238.9 0 0 1 112.1-64.7l26 16L270 270 92.7 120z" fill="#fe2712"/>
-              <path d="M205.3 28.5a239 239 0 0 1 129.4 0L270 270z" fill="#fd5308"/>
-              <path d="M28.5 334.7a239 239 0 0 1 0-129.4l27.8-18.7L270 270 55.9 349.4z" fill="#8601af"/>
-              <path d="M28.5 205.3c12-44.4 32.2-79.5 64.7-112L270 270z" fill="#a7194b"/>
-              <path d="M205.3 511.5a238.9 238.9 0 0 1-112-64.7l2-28.2L270 270l-39 229.7z" fill="#0247fe"/>
-              <path d="M93.2 446.8a238.9 238.9 0 0 1-64.7-112.1L270 270z" fill="#3d01a4"/>
-              <path d="M446.8 446.8a238.9 238.9 0 0 1-112.1 64.7l-24.2-15.1L270 270l176 151.2z" fill="#66b032"/>
-              <path d="M334.7 511.5a239 239 0 0 1-129.4 0L270 270z" fill="#0391ce"/>
-              <path d="M511.5 334.7a238.9 238.9 0 0 1-64.7 112L270 270l241.5 64.7z" fill="#d0ea2b"/>
-              <circle cx="270" cy="270" r="153.8" fill="#fff"/>
-            </svg>
-          </span>
-          <span class="theme-selector-input__theme-details">
-            <span class="theme-selector-input__indicator"></span>
-            <span class="theme-selector-input__theme-name">Custom</span>
-          </span>
-        </label>
-      </li>
     </ul>
   </div>
 </template>
@@ -114,7 +78,6 @@ export default {
     },
     required: Boolean,
     themes: Object,
-    custom: Boolean,
     none: Boolean,
     value: String,
   },
@@ -212,7 +175,6 @@ export default {
   gap: var(--spacing-2);
   grid-area: details;
   margin-top: var(--spacing-2);
-  padding-right: var(--spacing-5);
 }
 
 .theme-selector-input__indicator {
@@ -239,10 +201,12 @@ export default {
 }
 
 .theme-selector-input__theme-name {
-  font-size: var(--text-xxs);
+  font-size: var(--text-xs);
   font-weight: var(--font-normal);
   display: block;
   overflow: hidden;
+  padding-block: .2em;
+  margin-block: -.2em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
