@@ -55,6 +55,12 @@ App::plugin('fabianmichael/themekit', [
 
 	'fields' => require __DIR__ . '/config/fields.php',
 
+	'blockMethods' => [
+		'theme' => function () {
+			return Theme::from($this);
+		}
+	],
+
 	'layoutMethods' => [
 		'theme' => function () {
 			return Theme::from($this);
