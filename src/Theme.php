@@ -10,7 +10,6 @@ use Kirby\Cms\Layout;
 use Kirby\Cms\Page;
 use Kirby\Toolkit\A;
 use Kirby\Toolkit\Obj;
-use Kirby\Toolkit\Str;
 
 class Theme extends Obj
 {
@@ -190,17 +189,12 @@ class Theme extends Obj
 				$props[$field] = $content->get(static::CUSTOM_THEME_PREFIX . $field)->value();
 			}
 
-			if ($item instanceof Page) {
-				$slug = 'page-' . substr($item->uuid()->id(), 0, 6);
-			} elseif ($item instanceof Layout) {
-				$slug = 'layout-' . Str::slug(explode('-', $item->id())[0]);
-			} else {
-				$slug = 'custom-';
-			}
+			$slug = 'custom-' . substr(sha1(serialize($props)), 0, 8);
 
 			$props = [
 				...$props,
 				'slug' => $slug,
+				'source' => null,
 			];
 
 			$theme = new static($props);

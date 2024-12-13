@@ -14,18 +14,21 @@ class Themes extends Collection
 	{
 		// themes from config
 		foreach (option('fabianmichael.themekit.themes', []) as $theme) {
-			$this->set($theme['slug'], new Theme(array_merge($theme, [
+			$theme = new Theme(array_merge($theme, [
 				'source' => 'config',
-			])));
+			]));
+
+			$this->set($theme->slug(), $theme);
 		}
 
 		// load global themes from $site
 		$code = kirby()->defaultLanguage()?->code();
 		foreach (site()->content($code)->get('themes')->yaml() as $theme) {
-			$this->set($theme['slug'], new Theme([
+			$theme = new Theme([
 				...$theme,
 				'source' => 'site',
-			]));
+			]);
+			$this->set($theme->slug(), $theme);
 		}
 	}
 
