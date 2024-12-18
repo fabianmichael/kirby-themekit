@@ -2,7 +2,7 @@
     "name": "fabianmichael/kirby-themekit",
     "description": "Tools for color themes",
     "type": "kirby-plugin",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "homepage": "https://github.com/fabianmichael/kirby-themekit",
     "autoload": {
         "psr-4": {
@@ -19,7 +19,7 @@
         }
     ],
     "require": {
-        "getkirby/cms": "^4.4",
+        "getkirby/cms": "^4.4 || ^5.0.0-beta.1",
         "getkirby/composer-installer": "^1.2"
     },
     "config": {
