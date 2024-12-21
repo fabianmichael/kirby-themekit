@@ -13,8 +13,9 @@ class Themes extends Collection
 	protected function __construct()
 	{
 		// themes from config
-		foreach (option('fabianmichael.themekit.themes', []) as $theme) {
+		foreach (option('fabianmichael.themekit.themes', []) as $slug => $theme) {
 			$theme = new Theme(array_merge($theme, [
+				'slug' => $slug,
 				'source' => 'config',
 			]));
 

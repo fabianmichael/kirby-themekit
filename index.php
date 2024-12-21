@@ -31,17 +31,15 @@ App::plugin('fabianmichael/themekit', [
 			return array_slice($previews, 0, 2);
 		},
 		'themes' => [
-			// [
-			//	'slug' => 'light',
-			// 	'name' => 'Light',
-			// 	'background' => '#fff',
-			// 	'default' => true,
-			// ],
-			// [
-			//	'slug' => 'dark',
-			// 	'name' => 'Dark',
-			// 	'color' => '#000',
-			// ],
+			'light' => [
+				'name' => 'Light',
+				'background' => '#fff',
+				'default' => true,
+			],
+			'dark' => [
+				'name' => 'Dark',
+				'background' => '#000',
+			],
 		],
 		'fields' => [],
 	],
