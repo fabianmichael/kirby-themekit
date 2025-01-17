@@ -32,12 +32,12 @@ App::plugin('fabianmichael/themekit', [
 		},
 		'themes' => [
 			'light' => [
-				'name' => 'Light',
+				'title' => 'Light',
 				'background' => '#fff',
 				'default' => true,
 			],
 			'dark' => [
-				'name' => 'Dark',
+				'title' => 'Dark',
 				'background' => '#000',
 			],
 		],
