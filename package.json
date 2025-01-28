@@ -10,6 +10,6 @@
     "build": "kirbyup panel/index.js"
   },
   "devDependencies": {
-    "kirbyup": "^2.1.3"
+    "kirbyup": "^3.2.0"
   }
 }
