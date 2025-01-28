@@ -151,9 +151,9 @@ export default {
   color: var(--foreground, var(--color-black));
   padding: var(--spacing-3);
   cursor: pointer;
-  border: 1px solid var(--color-border);
-  border-radius: var(--rounded);
-  box-shadow: inset 0 0 0 3px var(--color-white);
+  border-radius: var(--input-rounded);
+  outline: 1px solid var(--input-color-border);
+  box-shadow: inset 0 0 0 2px var(--input-color-back);
 }
 
 .theme-selector-input__preview {
@@ -188,8 +188,7 @@ export default {
 }
 
 .theme-selector-input input:focus + label {
-  border: 1px solid var(--color-focus);
-  box-shadow: inset 0 0 0 3px var(--color-white), 0 0 0 2px var(--color-focus-outline);
+  box-shadow: inset 0 0 0 2px var(--input-color-back), 0 0 0 2px var(--color-focus);
 }
 
 .theme-selector-input input:checked + label .theme-selector-input__indicator::before {
