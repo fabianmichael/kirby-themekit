@@ -35,10 +35,7 @@ class Theme extends Obj
 
 	protected static function constrastColors(): array
 	{
-		return [
-			option('fabianmichael.themekit.contrastLight'),
-			option('fabianmichael.themekit.contrastDark'),
-		];
+		return option('fabianmichael.themekit.contrastColors', []);
 	}
 
 	public function readability(): array
@@ -93,11 +90,11 @@ class Theme extends Obj
 
 	public function isDark(): bool
 	{
-		$color = $this->background()->toMostReadable(static::constrastColors());
+		$color = $this->background()->toMostReadable(['#fff', '#000']);
 		$color = A::first($color);
 		$color = A::get($color, 'color');
 
-		return $color->toString('hex') === (new Color(option('fabianmichael.themekit.contrastLight')))->toString('hex');
+		return $color->toString('hex') === (new Color('#fff'))->toString('hex');
 	}
 
 	public function isLight(): bool

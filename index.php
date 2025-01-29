@@ -10,8 +10,7 @@ use Kirby\Toolkit\A;
 App::plugin('fabianmichael/themekit', [
 	'options' => [
 		'customThemes' => true,
-		'contrastLight' => '#ffffff',
-		'contrastDark' => '#000000',
+		'contrastColors' => ['#fff', '#000'],
 		'css' => [
 			'selector' => '[data-theme="{slug}"]',
 			'propertyName' => '--theme--{name}',
