@@ -5,7 +5,6 @@ use Kirby\Toolkit\Str;
 /** @var \FabianMichael\ThemeKit\Theme $theme */
 
 $propertyName = $kirby->option('fabianmichael.themekit.css.propertyName');
-$colorValue = $kirby->option('fabianmichael.themekit.css.colorValue');
 
 foreach ($theme->colorsExport() as $name) {
     if (!$color = $theme->$name()) {
@@ -15,12 +14,7 @@ foreach ($theme->colorsExport() as $name) {
     echo '    ' . Str::template($propertyName, [
         'name' => str_replace('_', '-', $name),
     ]);
-    echo ': ';
-    echo Str::template($colorValue, [
-        ...($v = $color->toValues()),
-        '/alpha' => r($v['a'] < 100, ' / ' . $v['a'], ''),
-    ]);
-    echo ';';
+    echo ": {$color};";
     echo PHP_EOL;
 }
 

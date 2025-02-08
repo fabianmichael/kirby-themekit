@@ -228,7 +228,14 @@ class Theme extends Obj
 			],
 		];
 
-		foreach (option('fabianmichael.themekit.fields') as $name => $field) {
+
+		$userFields = option('fabianmichael.themekit.fields');
+
+		if (is_callable($userFields)) {
+			$userFields = $userFields();
+		}
+
+		foreach ($userFields as $name => $field) {
 			$fields["{$prefix}{$name}"] = $field;
 		}
 

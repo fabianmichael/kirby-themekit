@@ -14,7 +14,6 @@ App::plugin('fabianmichael/themekit', [
 		'css' => [
 			'selector' => '[data-theme="{slug}"]',
 			'propertyName' => '--theme--{name}',
-			'colorValue' => 'hsl({h} {s}% {l}%{/alpha})',
 		],
 		'previewColors' => function (): array {
 			$previews = [];
