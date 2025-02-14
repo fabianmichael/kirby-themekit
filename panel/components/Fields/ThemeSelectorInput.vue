@@ -81,13 +81,13 @@ export default {
     none: Boolean,
     value: String,
   },
-  watch: {
-    value() {
-      this.onInvalid()
-    }
-  },
+  // watch: {
+  //   value() {
+  //     this.onInvalid()
+  //   }
+  // },
   mounted() {
-    this.onInvalid()
+    // this.onInvalid()
 
     if (this.$props.autofocus) {
       this.focus()
@@ -100,9 +100,9 @@ export default {
     onInput(value) {
       this.$emit("input", value)
     },
-    onInvalid() {
-      this.$emit("invalid", this.$v.$invalid, this.$v)
-    },
+    // onInvalid() {
+    //   this.$emit("invalid", this.$v.$invalid, this.$v)
+    // },
     select() {
       this.focus()
     },
