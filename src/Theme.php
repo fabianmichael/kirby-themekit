@@ -107,6 +107,11 @@ class Theme extends Obj
 		return r($this->isLight(), 'light', 'dark');
 	}
 
+	public function lightDark(): string
+	{
+		return r($this->isLight(), 'light dark', 'dark light');
+	}
+
 	public function toArray(): array
 	{
 		$data = [
