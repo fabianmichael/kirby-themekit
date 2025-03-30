@@ -13,8 +13,6 @@ use Kirby\Toolkit\Obj;
 
 class Theme extends Obj
 {
-	protected const CUSTOM_THEME_PREFIX = 'theme_';
-
 	public function __construct(array $data)
 	{
 		$data = array_merge([
@@ -175,20 +173,22 @@ class Theme extends Obj
 		return $this->slug();
 	}
 
-	public static function from(Page|Layout|Block $item): ?Theme
-	{
+	public static function from(
+		Page|Layout|Block $item,
+		string $fieldName = 'theme'
+	): ?Theme {
 		$themes = Themes::instance();
 		$content = $item instanceof Layout
 			? $item->attrs()
 			: $item->content(kirby()->defaultLanguage()?->code());
-		$themeField = $content->get('theme');
-		$isCustom = $content->get(static::CUSTOM_THEME_PREFIX .'custom')->isTrue();
+		$themeField = $content->get($fieldName);
+		$isCustom = $content->get("{$fieldName}_custom")->isTrue();
 
 		if ($isCustom) {
 			$props = [];
 
 			foreach (['slug', 'title', ...array_keys(static::fields())] as $field) {
-				$props[$field] = $content->get(static::CUSTOM_THEME_PREFIX . $field)->value();
+				$props[$field] = $content->get("{$fieldName}_{$field}")->value();
 			}
 
 			$slug = 'custom-' . substr(sha1(serialize($props)), 0, 8);

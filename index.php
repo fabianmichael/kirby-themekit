@@ -3,6 +3,7 @@
 use Kirby\Cms\App;
 use FabianMichael\ThemeKit\Theme;
 use FabianMichael\ThemeKit\Themes;
+use Kirby\Content\Field;
 use Kirby\Toolkit\A;
 
 @include_once __DIR__ . '/vendor/autoload.php';
@@ -14,6 +15,7 @@ App::plugin('fabianmichael/themekit', [
 		'css' => [
 			'selector' => '[data-theme="{slug}"]',
 			'propertyName' => '--theme--{name}',
+			'lightDark' => true,
 		],
 		'previewColors' => function (): array {
 			$previews = [];
@@ -51,26 +53,35 @@ App::plugin('fabianmichael/themekit', [
 
 	'fields' => require __DIR__ . '/config/fields.php',
 
+	'fieldMethods' => [
+		'toTheme' => function (Field $field) {
+			return Theme::from(
+				$field->model(),
+				$field->key(),
+			);
+		},
+	],
+
 	'blockMethods' => [
-		'theme' => function () {
+		'theme' => function (): ?Theme {
 			return Theme::from($this);
 		}
 	],
 
 	'layoutMethods' => [
-		'theme' => function () {
+		'theme' => function (): ?Theme {
 			return Theme::from($this);
 		}
 	],
 
 	'pageMethods' => [
-		'theme' => function () {
+		'theme' => function (): ?Theme {
 			return Theme::from($this) ?? themes()->default();
 		},
 	],
 
 	'siteMethods' => [
-		'themes' => function () {
+		'themes' => function (): Themes {
 			return Themes::instance();
 		},
 	],
