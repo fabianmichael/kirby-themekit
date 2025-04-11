@@ -14,6 +14,10 @@ class Themes extends Collection
 	{
 		// themes from config
 		foreach (option('fabianmichael.themekit.themes', []) as $slug => $theme) {
+			if ($theme === false) {
+				continue;
+			}
+
 			$theme = new Theme(array_merge($theme, [
 				'slug' => $slug,
 				'source' => 'config',
