@@ -6,7 +6,10 @@ use Kirby\Toolkit\Str;
 
 echo '  ' . Str::template(
     $kirby->option('fabianmichael.themekit.css.selector'),
-    ['slug' => $theme->slug()]
+    [
+        'slug' => $theme->slug(),
+        'scheme' => $theme->scheme(),
+    ]
 );
 echo ' { ';
 echo PHP_EOL;

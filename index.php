@@ -14,6 +14,7 @@ App::plugin('fabianmichael/themekit', [
 		'contrastColors' => ['#fff', '#000'],
 		'css' => [
 			'selector' => '[data-theme="{slug}"]',
+			'attrValue' => '{slug}',
 			'propertyName' => '--theme--{name}',
 			'lightDark' => true,
 		],

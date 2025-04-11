@@ -10,6 +10,7 @@ use Kirby\Cms\Layout;
 use Kirby\Cms\Page;
 use Kirby\Toolkit\A;
 use Kirby\Toolkit\Obj;
+use Kirby\Toolkit\Str;
 
 class Theme extends Obj
 {
@@ -20,6 +21,14 @@ class Theme extends Obj
 		], $data);
 
 		parent::__construct($data);
+	}
+
+	public function attrValue(): string
+	{
+		return Str::template(option('fabianmichael.themekit.css.attrValue'), [
+			'slug' => $this->slug(),
+			'scheme' => $this->scheme(),
+		]);
 	}
 
 	public function colorsExport(): array
