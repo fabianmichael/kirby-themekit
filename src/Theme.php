@@ -8,6 +8,7 @@ use FabianMichael\ThemeKit\Color\Color;
 use Kirby\Cms\Block;
 use Kirby\Cms\Layout;
 use Kirby\Cms\Page;
+use Kirby\Cms\Site;
 use Kirby\Toolkit\A;
 use Kirby\Toolkit\Obj;
 use Kirby\Toolkit\Str;
@@ -183,7 +184,7 @@ class Theme extends Obj
 	}
 
 	public static function from(
-		Page|Layout|Block $item,
+		Site|Page|Layout|Block $item,
 		string $fieldName = 'theme'
 	): ?Theme {
 		$themes = Themes::instance();
