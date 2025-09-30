@@ -230,14 +230,14 @@ class Theme extends Obj
 		$fields = [
 			"{$prefix}background" => [
 				'type' => 'color',
-				'label' => 'Background color',
+				'label' => t('themekit.fields.background.label'),
 				'required' => true,
 				'translate' => false,
 				'width' => '1/2',
 			],
 			"{$prefix}foreground" => [
 				'type' => 'color',
-				'label' => 'Foreground color',
+				'label' => t('themekit.fields.foreground.label'),
 				'translate' => false,
 				'width' => '1/2',
 			],

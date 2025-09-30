@@ -20,7 +20,7 @@ function theme_fields(?string $fieldName = 'theme'): array {
 
 	$themesField = [
 		'type' => 'theme-selector',
-		'label' => 'Color theme',
+		'label' => t('themekit.fields.theme.label'),
 		'default' => $themes->default()?->slug(),
 		'translate' => false,
 	];
@@ -29,7 +29,7 @@ function theme_fields(?string $fieldName = 'theme'): array {
 		return [
 			"{$fieldName}_custom" => [
 				'type' => 'toggle',
-				'label' => 'Custom theme',
+				'label' => t('themekit.fields.custom.label'),
 				'translate' => false,
 			],
 			$fieldName => array_merge(

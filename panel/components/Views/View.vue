@@ -1,7 +1,7 @@
 <template>
 	<k-panel-inside class="k-themes-view">
 		<k-header>
-			Themes
+			{{ this.$t('themekit.areas.themes') }}
 
 			<template #buttons>
 				<slot name="buttons" />

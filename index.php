@@ -95,4 +95,10 @@ App::plugin('fabianmichael/themekit', [
 		'themes/css-properties' => __DIR__ . '/snippets/themes/css-properties.php',
 		'themekit/themes/css-properties' => __DIR__ . '/snippets/themes/css-properties.php',
 	],
+
+
+	'translations' => [
+		'de' => require __DIR__ . '/translations/de.php',
+		'en' => require __DIR__ . '/translations/en.php',
+	],
 ]);

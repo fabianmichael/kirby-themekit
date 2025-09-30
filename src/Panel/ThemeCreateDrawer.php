@@ -25,14 +25,14 @@ class ThemeCreateDrawer
 		$fields = [
 			'title' => [
 				'type'     => 'text',
-				'label'    => 'Title',
+				'label'    => t('themekit.fields.title.label'),
 				'icon'     => 'brush',
 				'counter'  => false,
 				'required' => true,
 			],
 			'slug' => [
 				'type' => 'slug',
-				'label' => 'Slug',
+				'label' => t('themekit.fields.slug.label'),
 				'font' => 'monospace',
 				'sync' => 'title',
 				'required' => 'true',

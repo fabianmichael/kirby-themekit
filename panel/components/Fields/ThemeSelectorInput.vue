@@ -19,7 +19,7 @@
           </span>
           <span class="theme-selector-input__theme-details">
             <span class="theme-selector-input__indicator"></span>
-            <span class="theme-selector-input__theme-name">Standard</span>
+            <span class="theme-selector-input__theme-name">{{ $t('themekit.theme.default') }}</span>
           </span>
         </label>
       </li>

@@ -13,7 +13,7 @@ class View
 			'props' => [
 				'data' => site()->themes()->toData(function ($item) {
 					if ($item['default']) {
-						$item['title'] .= ' (default)';
+						$item['title'] .= ' (' . t('themekit.theme.default') . ')';
 					}
 					return $item;
 				}),

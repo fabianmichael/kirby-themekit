@@ -21,33 +21,34 @@ export default {
 		columns() {
 			return {
 				title: {
-					label: 'Title',
+					label: this.$t('themekit.fields.title.label'),
 					type: "title",
+          label: this.$t('themekit.table.title.label'),
 					mobile: true,
           width: '6/20',
           html: true,
 				},
 				slug: {
-					label: 'Slug',
+					label: this.$t('themekit.table.slug'),
 					type: "slug",
           width: '6/20',
 				},
         background: {
-          label: 'Background',
+          label: this.$t('themekit.table.background.label'),
           type: 'color',
           align: 'center',
           mobile: true,
           width: '2/20',
         },
         foreground: {
-          label: 'Foreground',
+          label: this.$t('themekit.table.foreground.label'),
           type: 'color',
           mobile: true,
           align: 'center',
           width: '2/20',
         },
         readability: {
-          label: 'Contrast',
+          label: this.$t('themekit.table.readability.label'),
           type: 'theme-readability',
           align: 'center',
           width: '2/20',

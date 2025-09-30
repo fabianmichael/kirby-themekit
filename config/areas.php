@@ -14,7 +14,7 @@ return [
 		}
 
 		return [
-			'label' => 'Themes',
+			'label' => t('themekit.areas.themes'),
 			'icon'  => 'palette',
 			'menu'  => true,
 			'link'  => 'themes',
