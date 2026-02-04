@@ -175,6 +175,10 @@ class Theme extends Obj
 
 	public function isEditable(): bool
 	{
+		if (option('fabianmichael.themekit.editableDefaultThemes')) {
+			return true;
+		}
+
 		return $this->source() === 'site';
 	}
 

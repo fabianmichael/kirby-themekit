@@ -12,6 +12,7 @@ App::plugin('fabianmichael/themekit', [
 	'options' => [
 		'customThemes' => true,
 		'contrastColors' => ['#fff', '#000'],
+		'editableDefaultThemes' => false,
 		'css' => [
 			'selector' => '[data-theme="{slug}"]',
 			'attrValue' => '{slug}',
