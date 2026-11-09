@@ -20,12 +20,12 @@
         }
     ],
     "require": {
-        "getkirby/cms": "^4.4 || ^5.0.0-beta.1",
+        "getkirby/cms": "^5.0",
         "getkirby/composer-installer": "^1.2"
     },
     "config": {
         "platform": {
-          "php": "8.2"
+          "php": "8.4"
         },
         "allow-plugins": {
             "getkirby/composer-installer": true
